@@ -1,18 +1,27 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
-import HomeScreen from "./src/pages/home/HomePage";
-import DetailsScreen from "./src/pages/my/MyPage";
+import * as React from 'react';
+import { View, Text ,Button } from 'react-native';
  
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
+import HomeScreen from './src/pages/Screen/HomeScreen'
+import DetailsScreen from './src/pages/Screen/DetailsScreen'
+import ProfileScreen from './src/pages/Screen/ProfileScreen'
+
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Details: DetailsScreen,
+    Profile: ProfileScreen
   },
-  Details: {
-    screen: DetailsScreen,
-  },
-}, {
+  {
     initialRouteName: 'Home',
-});
- 
-export default createAppContainer(AppNavigator);
+  }
+);
+
+
+const AppContainer = createAppContainer(RootStack);
+function App() {
+  return <AppContainer />;
+}
+export default App;
