@@ -18,15 +18,88 @@ import {
 } from 'react-native';
 import Util from './utils';
 
-class WatchFace extends Component {
+//面板显示 分 和 秒
+class TimePanel extends Component {
   render() {
     return (
       <View style={styles.watchFaceContainer}>
         <Text style={styles.sectionTime}>{this.props.sectionTime}</Text>
-        <Text style={styles.totalTime}>{this.props.totalTime}</Text>
+    <Text style={styles.totalTime}>{this.props.totalTime}</Text>
       </View>
     );
   }
+}
+
+//按钮的控制面板 
+class TimeController extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      On:false,
+      startBtnText:'开始',
+      startBtnColor:'#60B644',
+      stopBtnText:'快闪',
+      underlayColor:'#FFF',
+    }
+  }
+  _start = ()=>{
+    if(!this.state.On){
+      this.props.start();
+      this.setState({
+        On:true,
+        startBtnText:'停止',
+        startBtnColor:'#ff0044',
+        stopBtnText:'快闪',
+        underlayColor:'#eee',
+      });
+    }else{
+      this.props.stop();
+      this.setState({
+        On:false,
+        startBtnText:'开始',
+        startBtnColor:'#60B644',
+        stopBtnText:'复位',
+        underlayColor:'#eee',
+      })
+    }
+  }
+  _flash = ()=>{
+    if(this.state.On){
+      this.props.flash();
+    }else{
+      this.props.clear();
+      this.setState({
+        stopBtnText:'快闪'
+      })
+    }
+  }
+
+  render() {
+    return(
+      <View style={styles.watchControlContainer}>
+          <View style={{flex: 1, alignItems: 'flex-start'}}>
+          <TouchableHighlight
+            style={styles.btnStop}
+            underlayColor={this.state.underlayColor}
+            onPress={this._flash}>
+            <Text style={styles.btnStopText}>{this.state.stopBtnText}</Text>
+          </TouchableHighlight>
+        </View>
+        <View style={{flex: 1, alignItems: 'flex-end'}}>
+          <TouchableHighlight
+            style={styles.btnStart}
+            underlayColor="#eee"
+            onPress={this._start}>
+            <Text
+              style={[styles.btnStartText, {color: this.state.startBtnColor}]}>
+              {this.state.startBtnText}
+            </Text>
+          </TouchableHighlight>
+        </View>
+      </View>
+    )
+  }
+  
 }
 
 class WatchControl extends Component {
@@ -273,15 +346,15 @@ export default class extends Component {
   render() {
     return (
       <View style={styles.watchContainer}>
-        <WatchFace
+        <TimePanel
           totalTime={this.state.totalTime}
           sectionTime={this.state.sectionTime}
         />
-        <WatchControl
+        <TimeController
           addRecord={() => this._addRecord()}
-          clearRecord={() => this._clearRecord()}
-          startWatch={() => this._startWatch()}
-          stopWatch={() => this._stopWatch()}
+          clear={() => this._clearRecord()}
+          start={() => this._startWatch()}
+          stop={() => this._stopWatch()}
         />
         {/* <WatchRecord record={this.state.record}></WatchRecord> */}
       </View>
