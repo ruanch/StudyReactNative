@@ -24,7 +24,7 @@ export default class FastListScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pushArray: ['BuildIos', 'BuildAndroid', '', '', '', 'Day01'],
+      pushArray: ['BuildIos', 'BuildAndroid', '', '', '', 'Day01', 'Day02'],
     };
   }
   refreshing() {
@@ -54,6 +54,7 @@ export default class FastListScreen extends Component {
               {key: 'ES7的学习'},
               {key: 'ES8的学习'},
               {key: 'Day01'},
+              {key: 'Day02'},
             ]}
             renderItem={({item, index}) => (
               <TouchableOpacity
