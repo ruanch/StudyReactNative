@@ -16,6 +16,8 @@ import Day05 from '../Screen/Day05';
  
 import Day07 from '../Screen/Day07';
 import Day08 from '../Screen/Day08';
+import Day09 from '../Screen/Day09';
+import Day10 from '../Screen/Day10';
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
@@ -29,9 +31,10 @@ const RootStack = createStackNavigator(
     Day02: Day02,
     Day03: Day03,
     Day05: Day05,
- 
     Day07: Day07,
     Day08: Day08,
+    Day09: Day09,
+    Day10: Day10,
   },
   {
     initialRouteName: 'FastList',
