@@ -18,6 +18,11 @@ import Day07 from '../Screen/Day07';
 import Day08 from '../Screen/Day08';
 import Day09 from '../Screen/Day09';
 import Day10 from '../Screen/Day10';
+import Day11 from '../Screen/Day11';
+import Launch from '../Screen/Shoping/Main/GTLaunchImage';
+import HomeDetail from '../Screen/Shoping/Home/GTHomeDetail';
+import ShopCenter from '../Screen/Shoping/Home/GTHomeBottomShopCenter';
+
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
@@ -35,9 +40,13 @@ const RootStack = createStackNavigator(
     Day08: Day08,
     Day09: Day09,
     Day10: Day10,
+    Day11: Day11,
+    Launch: Launch,
+    HomeDetail: HomeDetail,
+    ShopCenter: ShopCenter,
   },
   {
-    initialRouteName: 'FastList',
+    initialRouteName: 'Launch',
   },
 );
 export const AppContainer = createAppContainer(RootStack);

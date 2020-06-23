@@ -24,60 +24,60 @@ class TimePanel extends Component {
     return (
       <View style={styles.watchFaceContainer}>
         <Text style={styles.sectionTime}>{this.props.sectionTime}</Text>
-    <Text style={styles.totalTime}>{this.props.totalTime}</Text>
+        <Text style={styles.totalTime}>{this.props.totalTime}</Text>
       </View>
     );
   }
 }
 
-//按钮的控制面板 
+//按钮的控制面板
 class TimeController extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      On:false,
-      startBtnText:'开始',
-      startBtnColor:'#60B644',
-      stopBtnText:'快闪',
-      underlayColor:'#FFF',
-    }
+      On: false,
+      startBtnText: '开始',
+      startBtnColor: '#60B644',
+      stopBtnText: '快闪',
+      underlayColor: '#FFF',
+    };
   }
-  _start = ()=>{
-    if(!this.state.On){
+  _start = () => {
+    if (!this.state.On) {
       this.props.start();
       this.setState({
-        On:true,
-        startBtnText:'停止',
-        startBtnColor:'#ff0044',
-        stopBtnText:'快闪',
-        underlayColor:'#eee',
+        On: true,
+        startBtnText: '停止',
+        startBtnColor: '#ff0044',
+        stopBtnText: '快闪',
+        underlayColor: '#eee',
       });
-    }else{
+    } else {
       this.props.stop();
       this.setState({
-        On:false,
-        startBtnText:'开始',
-        startBtnColor:'#60B644',
-        stopBtnText:'复位',
-        underlayColor:'#eee',
-      })
+        On: false,
+        startBtnText: '开始',
+        startBtnColor: '#60B644',
+        stopBtnText: '复位',
+        underlayColor: '#eee',
+      });
     }
-  }
-  _flash = ()=>{
-    if(this.state.On){
+  };
+  _flash = () => {
+    if (this.state.On) {
       this.props.flash();
-    }else{
+    } else {
       this.props.clear();
       this.setState({
-        stopBtnText:'快闪'
-      })
+        stopBtnText: '快闪',
+      });
     }
-  }
+  };
 
   render() {
-    return(
+    return (
       <View style={styles.watchControlContainer}>
-          <View style={{flex: 1, alignItems: 'flex-start'}}>
+        <View style={{flex: 1, alignItems: 'flex-start'}}>
           <TouchableHighlight
             style={styles.btnStop}
             underlayColor={this.state.underlayColor}
@@ -97,9 +97,8 @@ class TimeController extends Component {
           </TouchableHighlight>
         </View>
       </View>
-    )
+    );
   }
-  
 }
 
 class WatchControl extends Component {
@@ -300,7 +299,7 @@ export default class extends Component {
   _addRecord() {
     let {recordCounter, record} = this.state;
     recordCounter++;
-    if (recordCounter<8) {
+    if (recordCounter < 8) {
       record.pop();
     }
     record.unshift({

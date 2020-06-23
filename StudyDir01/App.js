@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {AppContainer} from './src/pages/Router/RootStack'
-
+import {AppContainer} from './src/pages/Router/RootStack';
 
 function App() {
   return <AppContainer />;
